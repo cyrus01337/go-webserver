@@ -1,8 +1,8 @@
 # Go Webserver
 
 This is an example project used to demonstrate an understanding of a basic
-file webserver for serving singular files and, in the future, bundled sites like
-those generated with bundling tools such as Vite.
+file webserver for serving static sites, including those generated with
+bundling tools such as Vite.
 
 ## Usage
 
