@@ -14,7 +14,7 @@ WORKDIR /app
 
 RUN --mount=type=cache,target=/store/app ["go", "build", "-o", "compiled"]
 
-FROM debian:bookworm
+FROM alpine:3.24.1
 WORKDIR /app
 
 COPY --from=builder /app/compiled ./
