@@ -1,0 +1,9 @@
+.devcontainer/
+.git/
+.gitignore
+.gitmodules
+Dockerfile
+README.md
+app
+external/
+index.html

@@ -25,5 +25,8 @@
 # Go workspace file
 go.work
 
-# Ignore binary
+# Compiled binary
 app
+
+# Environment variable files
+*.env
