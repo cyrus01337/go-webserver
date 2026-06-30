@@ -30,3 +30,6 @@ app
 
 # Environment variable files
 *.env
+
+# Static site assets
+build/
