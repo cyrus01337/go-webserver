@@ -6,27 +6,21 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/joho/godotenv"
+	dotenv "github.com/joho/godotenv"
 )
 
-func serveHomePage(writer http.ResponseWriter, request *http.Request) {
-	body, error := os.ReadFile("index.html")
+func main() {
+	error := dotenv.Load("defaults.env")
 
 	if error != nil {
-		body = []byte(error.Error())
+		log.Fatal(error)
 	}
 
-	fmt.Fprintf(writer, string(body))
-}
+	dotenv.Overload()
 
-func main() {
 	port := os.Getenv("PORT")
+	buildDirectory := os.Getenv("BUILD_DIRECTORY")
 
-	if err := godotenv.Load(".env"); err != nil {
-		port = "3000"
-	}
-
-	http.HandleFunc("/", serveHomePage)
-	fmt.Printf("Listening to localhost:%s...\n", port)
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
+	fmt.Printf("Serving %s on localhost:%s...\n", buildDirectory, port)
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), http.FileServer(http.Dir(buildDirectory))))
 }
